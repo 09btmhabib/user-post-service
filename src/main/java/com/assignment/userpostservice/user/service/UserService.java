@@ -1,6 +1,5 @@
 package com.assignment.userpostservice.user.service;
 
-import com.assignment.userpostservice.comment.service.CommentService;
 import com.assignment.userpostservice.excepton.DownstreamException;
 import com.assignment.userpostservice.post.dto.PostDto;
 import com.assignment.userpostservice.user.dto.UserDto;
@@ -38,7 +37,7 @@ public class UserService {
     public List<PostDto> getPostsByUser(Long id) {
         logger.info("Fetching all posts for user :{} ", id);
 
-        return restClient.get().uri("/users/" + id + "/post").
+        return restClient.get().uri("/users/" + id + "/posts").
                 retrieve().onStatus(HttpStatusCode::isError, (request, response) -> {
                     throw new DownstreamException(response.getStatusCode(), response.getStatusText());
                 })
